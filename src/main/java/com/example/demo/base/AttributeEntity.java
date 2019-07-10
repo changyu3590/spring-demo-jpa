@@ -1,8 +1,12 @@
 package com.example.demo.base;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,13 +18,19 @@ public class AttributeEntity   implements Serializable {
     private String attr1;
     private String attr2;
     private String attr3;
-    @TableField(value = "create_by", fill = FieldFill.INSERT)
+    @Column(name = "created_by", length = 50, updatable = false)
+    @CreatedBy
     private String createBy; // 创建者
-    @TableField(value = "create_date", fill = FieldFill.INSERT)
+    @Column(name = "created_date", columnDefinition = "date", updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @CreatedDate
     private Date createDate; // 创建日期
-    @TableField(value = "update_by", fill = FieldFill.UPDATE)
+    @Column(name = "update_by", length = 50, updatable = false)
+    @LastModifiedBy
     private String updateBy; // 更新者
-    @TableField(value = "update_date", fill = FieldFill.UPDATE)
+    @Column(name = "update_date", length = 50, updatable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @LastModifiedDate
     private Date updateDate; // 更新日期
     public String getAttr1() {
         return attr1;

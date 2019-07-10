@@ -1,8 +1,5 @@
 package com.example.demo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.demo.base.AttributeEntity;
 
 import java.io.Serializable;
@@ -12,9 +9,7 @@ import java.io.Serializable;
  * @Version 1.0
  * 用户表
  */
-@TableName("t_user")
 public class User extends AttributeEntity implements Serializable {
-    @TableId(value = "id",type = IdType.AUTO)//指定自增策略
     private Long id;
     private Long roleId;
     private String realname;

@@ -63,7 +63,7 @@ public class UserController {
 	@RequiresRoles("admin")
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	public GeneralResponseDto delete(int id) {
-		userService.doDelete(id);
+//		userService.doDelete(id);
 		return GeneralResponseDto.addSuccess();
 
 	}
@@ -79,7 +79,8 @@ public class UserController {
 										@RequestParam(value = "pageNo",required = false,defaultValue = "1")int pageNo,
 										@RequestParam(value = "pageSize",required = false,defaultValue = "999")int pageSize
 										) {
-		return GeneralResponseDto.addSuccess(userService.findAllUser(username,phone,realname,status,email,pageNo,pageSize));
+//		return GeneralResponseDto.addSuccess(userService.findAllUser(username,phone,realname,status,email,pageNo,pageSize));
+		return GeneralResponseDto.addSuccess();
 	}
 
 	/**

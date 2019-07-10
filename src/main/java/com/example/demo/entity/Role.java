@@ -1,17 +1,17 @@
 package com.example.demo.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.demo.base.AttributeEntity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 /**
  * 角色权限表
  */
-@TableName("t_role")
+@Entity
+@Table(name = "t_role")
 public class Role extends AttributeEntity implements Serializable {
-    @TableId(value = "id", type = IdType.AUTO) // 指定自增策略
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String desc;
     private String role;

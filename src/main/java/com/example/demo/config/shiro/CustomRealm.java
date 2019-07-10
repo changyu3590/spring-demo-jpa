@@ -1,6 +1,5 @@
 package com.example.demo.config.shiro;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.dao.RoleDao;
 import com.example.demo.dao.UserDao;
 import com.example.demo.entity.Role;
@@ -67,7 +66,7 @@ public class CustomRealm extends AuthorizingRealm {
         User user = (User) SecurityUtils.getSubject().getPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //获得该用户角色及权限
-        Role userRole=roleDao.selectOne(new QueryWrapper<Role>().eq("id",user.getRoleId()));
+        Role userRole = roleDao.findById(user.getId()).get();
         String role =userRole.getRole();
         info.addRole(role);
         Set<String> permissions = new HashSet<>(Arrays.asList(userRole.getPermissionName().split(",")));

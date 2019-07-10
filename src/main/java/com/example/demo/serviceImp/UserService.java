@@ -1,10 +1,6 @@
 package com.example.demo.serviceImp;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.base.BaseService;
-import com.example.demo.base.ServiceException;
 import com.example.demo.config.redis.RedisUtil;
 import com.example.demo.dao.UserDao;
 import com.example.demo.dto.GeneralResponseDto;
@@ -64,37 +60,37 @@ public class UserService extends BaseService<UserDao> {
             if(!StringUtils.isEmpty(user.getPassword())){
                 user.setPassword(md5Hex(user.getPassword()));
             }
-            this.dao.update(user);
+//            this.dao.update(user);
         //新增
         }else{
-            if(this.dao.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()))!=null){
-                throw new ServiceException("用户名已存在");
-            }
-            if (user.getRoleId() == null) {
-                user.setRoleId(2l);
-            }
-            user.setPassword(md5Hex(user.getPassword()));
-            this.dao.insert(user);
+//            if(this.dao.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()))!=null){
+//                throw new ServiceException("用户名已存在");
+//            }
+//            if (user.getRoleId() == null) {
+//                user.setRoleId(2l);
+//            }
+//            user.setPassword(md5Hex(user.getPassword()));
+//            this.dao.insert(user);
         }
     }
 
 
-    /**
-     * 分页查询
-     * @return
-     */
-    public IPage<User> findAllUser(String username, String phone, String realname, String status, String email, int pageNo, int pageSize) {
-        Page<User> page = new Page<>(pageNo,pageSize);
-        return this.dao.findUsersByPage(page,username,phone,realname,status,email);
-    }
+//    /**
+//     * 分页查询
+//     * @return
+//     */
+//    public IPage<User> findAllUser(String username, String phone, String realname, String status, String email, int pageNo, int pageSize) {
+//        Page<User> page = new Page<>(pageNo,pageSize);
+//        return this.dao.findUsersByPage(page,username,phone,realname,status,email);
+//    }
 
-    /**
-     * 删除
-     * @return
-     */
-    public void doDelete(int id) {
-        this.dao.deleteById(id);
-    }
+//    /**
+//     * 删除
+//     * @return
+//     */
+//    public void doDelete(int id) {
+//        this.dao.deleteById(id);
+//    }
 
 
     public void logout(Subject subject) {

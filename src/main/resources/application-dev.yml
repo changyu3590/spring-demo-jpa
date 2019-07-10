@@ -1,12 +1,16 @@
 server:
   port: 8089
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.SQLiteDialect
   datasource:
     dynamic:
       primary: master #设置默认的数据源或者数据源组,默认值即为master
       datasource:
         master:
-          url: jdbc:sqlite:D:\MyProject\spring-demo\sqlite.db
+          url: jdbc:sqlite:sqlite.db
           driver-class-name: org.sqlite.JDBC
   redis:
     database: 0
