@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import com.example.demo.base.AttributeEntity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -9,14 +10,26 @@ import java.io.Serializable;
  * @Version 1.0
  * 用户表
  */
+@Entity
+@Table(name = "t_user")
 public class User extends AttributeEntity implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long roleId;
+    @JoinColumn(name = "role_id")
+    @OneToOne
+    private Role role;
+    @Column(length = 50)
     private String realname;
+    @Column(length = 50)
     private String username;
+    @Column(length = 100)
     private String password;
+    @Column(length = 100)
     private String phone;
+    @Column(length = 100)
     private String email;
+    @Column(length = 5)
     private int status=1;
 
     public Long getId() {
@@ -87,17 +100,11 @@ public class User extends AttributeEntity implements Serializable {
                 '}';
     }
 
-    /**
-     * @return the roleId
-     */
-    public Long getRoleId() {
-        return roleId;
+    public Role getRole() {
+        return role;
     }
 
-    /**
-     * @param roleId the roleId to set
-     */
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

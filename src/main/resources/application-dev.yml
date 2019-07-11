@@ -4,14 +4,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.SQLiteDialect
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        format_sql: true
   datasource:
-    dynamic:
-      primary: master #设置默认的数据源或者数据源组,默认值即为master
-      datasource:
-        master:
-          url: jdbc:sqlite:sqlite.db
-          driver-class-name: org.sqlite.JDBC
+    url: jdbc:mysql://localhost:3306/springdemojpa?useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
   redis:
     database: 0
     host: 127.0.0.1 #Redis服务器地址
@@ -28,13 +30,7 @@ spring:
     timeout: 1800
 logging:
   config: classpath:logback-boot.xml
-mybatis-plus:
-  mapper-locations:  classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
-  typeAliasesPackage:  com.example.demo.entity  # 注意：对应实体类的路径
-  configuration:
-    #默认开启
-    mapUnderscoreToCamelCase: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 
 

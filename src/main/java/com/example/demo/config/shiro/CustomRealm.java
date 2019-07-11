@@ -1,9 +1,9 @@
 package com.example.demo.config.shiro;
 
-import com.example.demo.dao.RoleDao;
-import com.example.demo.dao.UserDao;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
+import com.example.demo.repository.RoleDao;
+import com.example.demo.repository.UserDao;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

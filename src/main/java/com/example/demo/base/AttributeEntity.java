@@ -5,8 +5,11 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,27 +17,26 @@ import java.util.Date;
  * @Author: ChangYu
  * @Version 1.0
  */
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public class AttributeEntity   implements Serializable {
-    private String attr1;
-    private String attr2;
-    private String attr3;
     @Column(name = "created_by", length = 50, updatable = false)
     @CreatedBy
     private String createBy; // 创建者
-    @Column(name = "created_date", columnDefinition = "date", updatable = false)
+
+    @Column(name = "created_date", length = 50, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @CreatedDate
     private Date createDate; // 创建日期
+
     @Column(name = "update_by", length = 50, updatable = false)
     @LastModifiedBy
     private String updateBy; // 更新者
+
     @Column(name = "update_date", length = 50, updatable = false)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     @LastModifiedDate
     private Date updateDate; // 更新日期
-    public String getAttr1() {
-        return attr1;
-    }
 
     public String getCreateBy() {
         return createBy;
@@ -68,25 +70,7 @@ public class AttributeEntity   implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public String getAttr2() {
-        return attr2;
-    }
 
-    public void setAttr2(String attr2) {
-        this.attr2 = attr2;
-    }
-
-    public String getAttr3() {
-        return attr3;
-    }
-
-    public void setAttr3(String attr3) {
-        this.attr3 = attr3;
-    }
-
-    public void setAttr1(String attr1) {
-        this.attr1 = attr1;
-    }
 
 
 

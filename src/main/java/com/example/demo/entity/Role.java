@@ -13,9 +13,27 @@ public class Role extends AttributeEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String desc;
     private String role;
+    @Column(length = 100)
     private String permissionName;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                ", permissionName='" + permissionName + '\'' +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getRole() {
         return role;
@@ -23,34 +41,6 @@ public class Role extends AttributeEntity implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the desc
-     */
-    public String getDesc() {
-        return desc;
-    }
-
-    /**
-     * @param desc the desc to set
-     */
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getPermissionName() {
